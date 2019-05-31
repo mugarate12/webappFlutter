@@ -7,6 +7,35 @@ class Table extends StatefulWidget {
 }
 
 class _TableState extends State<Table> {
+
+  bool choice = true;
+
+  Widget _TwoWidgets(){
+
+    if(choice){
+
+      return Center(
+
+        child: Text(
+          'PAGE 1'
+        ),
+
+      );
+
+    } else {
+
+      return Center(
+
+        child: Text(
+          'PAGE 2'
+        ),
+
+      );
+
+    }
+
+  } 
+
   @override
   Widget build(BuildContext context) {
     // HEADER
@@ -87,8 +116,36 @@ class _TableState extends State<Table> {
                     Icons.access_time,
                     color: Colors.black
                   ),
-                  Text(
-                    'Page um'
+                  MaterialButton(
+                    onPressed: (){
+                      setState(() {
+                        choice = true;
+                      });
+                      Navigator.pop(context);
+                    },
+                    child: Text('Page 1'),
+                  )
+                ],
+              ),
+            ),
+            Container(
+              height: MediaQuery.of(context).size.height / 10,
+              child: Row(
+                children: <Widget>[
+                  Icon(
+                    Icons.pages,
+                    color: Colors.black,
+                  ),
+                  MaterialButton(
+                    onPressed: (){
+                      setState(() {
+                        choice = false;
+                      });
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      'Page 2'
+                    ),
                   )
                 ],
               ),
@@ -104,7 +161,8 @@ class _TableState extends State<Table> {
           
           children: <Widget>[
             // HEADER
-            header
+            header,
+            _TwoWidgets()
           ],
 
         ),
