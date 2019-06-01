@@ -1,5 +1,6 @@
 import 'package:flutter_web/material.dart';
 import 'package:flutter_web/rendering.dart';
+import 'components/drawer_component.dart' as drawer_component;
 
 class Table extends StatefulWidget {
   @override
@@ -9,6 +10,24 @@ class Table extends StatefulWidget {
 class _TableState extends State<Table> {
 
   bool choice = true;
+
+  Function _Drawer1(){
+
+    setState(() {
+      choice = true;
+      Navigator.pop(context);
+    });
+
+  }
+
+  Function _Drawer2(){
+
+    setState(() {
+      choice = false;
+      Navigator.pop(context);
+    });
+
+  }
 
   Widget _TwoWidgets(){
 
@@ -108,47 +127,15 @@ class _TableState extends State<Table> {
         child: ListView(
           children: <Widget>[
             // itens do Drawer
-            Container(
-              height: MediaQuery.of(context).size.height / 10,
-              child: Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.access_time,
-                    color: Colors.black
-                  ),
-                  MaterialButton(
-                    onPressed: (){
-                      setState(() {
-                        choice = true;
-                      });
-                      Navigator.pop(context);
-                    },
-                    child: Text('Page 1'),
-                  )
-                ],
-              ),
+            drawer_component.DrawerComponent(
+              icon: Icons.aspect_ratio,
+              btnFunction: _Drawer1,
+              nameComponent: 'Page A',
             ),
-            Container(
-              height: MediaQuery.of(context).size.height / 10,
-              child: Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.pages,
-                    color: Colors.black,
-                  ),
-                  MaterialButton(
-                    onPressed: (){
-                      setState(() {
-                        choice = false;
-                      });
-                      Navigator.pop(context);
-                    },
-                    child: Text(
-                      'Page 2'
-                    ),
-                  )
-                ],
-              ),
+            drawer_component.DrawerComponent(
+              icon: Icons.access_alarm,
+              btnFunction: _Drawer2,
+              nameComponent: 'Page B',
             )
           ],
         ),

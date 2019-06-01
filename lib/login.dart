@@ -1,6 +1,7 @@
 import 'package:flutter_web/material.dart';
 import 'package:flutter_web/painting.dart';
-import 'package:congrats/responsive_widget.dart' as ResponsiveWidget;
+import 'components/register_widget.dart' as register_widget;
+import 'components/login_widget.dart' as login_widget;
 
 class Login extends StatefulWidget {
   @override
@@ -10,288 +11,66 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
 
   TextStyle style = TextStyle( fontSize: 20.0);
-  TextEditingController emailController = new TextEditingController();
-  TextEditingController passwordController = new TextEditingController();
+
+  // variavel que altera entre widget de login e de registro
   bool isLogin = true;
 
+  // estados do login
+  TextEditingController email_login_controller = new TextEditingController();
+  TextEditingController password_login_controller = new TextEditingController();
+  Function _LoginBtn(){
+
+    Navigator.pushNamed(context, '/table');
+
+  }
+  Function _LoginSwitch(){
+
+    setState(() {
+      isLogin = false;
+    });
+
+  }
+
+  // estados do registro
+  TextEditingController email_register_controller = new TextEditingController();
+  TextEditingController password_register_controller = new TextEditingController();
+  Function _RegisterBtn(){
+
+    Navigator.pushNamed(context, '/table');
+
+  }
+  Function _RegisterSwitch(){
+
+    setState(() {
+      isLogin = true;
+    });
+
+  }
+
+  // função pra alterar entre login e registro
   Widget _IsLogin(){
 
     if (isLogin){
 
-      return _LoginWidget();
+      return login_widget.Login(
+        emailController: email_login_controller,
+        passwordController: password_login_controller,
+        btnFunction: _LoginBtn,
+        switchFunction: _LoginSwitch,
+      );
 
     } else {
 
-      return _RegisterWidget();
+      return register_widget.Register(
+        emailController: email_register_controller,
+        passwordController: password_register_controller,
+        btnFunction: _RegisterBtn,
+        switchFunction: _RegisterSwitch,
+      );
 
     }
 
   }
-
-  Widget _LoginWidget(){
-
-      // Input de email
-      Widget emailField = Container(
-
-      margin: EdgeInsets.all(10),
-      padding: EdgeInsets.only(
-        left: 10,
-        bottom: 5
-      ),
-      width: ResponsiveWidget.ResponsiveWidget.isSmallScreen(context) ?
-          MediaQuery.of(context).size.width / 2 :
-          MediaQuery.of(context).size.width / 3,
-      height: 50,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(
-          Radius.circular(30)
-        ),
-        color: Colors.white,
-        // boxShadow: [
-        //   BoxShadow(
-        //     color: Colors.black54,
-        //     blurRadius: 20
-        //   )
-        // ]
-      ),
-      child: TextField(
-        controller: emailController,
-        obscureText: false,
-        decoration: InputDecoration(
-          hintText: 'email',
-          hasFloatingPlaceholder: false,
-        ),
-      ),
-
-    );
-    // Input de senha
-    Widget passowordField = Container(
-
-      margin: EdgeInsets.all(10),
-      padding: EdgeInsets.only(
-        left: 10,
-        bottom: 5
-      ),
-      width: ResponsiveWidget.ResponsiveWidget.isSmallScreen(context) ?
-          MediaQuery.of(context).size.width / 2 :
-          MediaQuery.of(context).size.width / 3,
-      height: 50,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(
-          Radius.circular(30)
-        ),
-        color: Colors.white,
-        // boxShadow: [
-        //   BoxShadow(
-        //     color: Colors.black54,
-        //     blurRadius: 20
-        //   )
-        // ]
-      ),
-      child: TextField(
-        controller: passwordController,
-        obscureText: true,
-        decoration: InputDecoration(
-          hintText: 'password',
-          hasFloatingPlaceholder: false,
-        ),
-      ),
-
-    );
-
-    // botão de login
-    Widget btnLogin = Material(
-
-      borderRadius: BorderRadius.circular(32),
-      child: MaterialButton(
-
-        height: 20,
-        minWidth: ResponsiveWidget.ResponsiveWidget.isSmallScreen(context) ?
-          MediaQuery.of(context).size.width / 2 :
-          MediaQuery.of(context).size.width / 3,
-        color: Colors.purple,
-
-        onPressed: (){
-          
-          print(emailController.text);
-          print(passwordController.text);
-          Navigator.pushNamed(context, '/table');
-
-        },
-        child: Text(
-          'Login',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Colors.white
-          )
-        ),
-
-      ),
-
-    );
-
-    Widget register = MaterialButton(
-
-      padding: EdgeInsets.only(
-        top: 10
-      ),
-      onPressed: (){
-
-        print('ok, ta funcionando');
-        setState(() {
-          isLogin = false;
-        });
-      
-      },
-      child: Text(
-        'You not have a account? Make one!'
-      ),
-
-    );
-
-    return Column(
-      children: <Widget>[
-        emailField,
-        passowordField,
-        btnLogin,
-        register
-      ],
-    );
-
-  }
-
-  Widget _RegisterWidget(){
-
-    // input de email do cadastro
-    Widget emailField = Container(
-
-      margin: EdgeInsets.all(10),
-      padding: EdgeInsets.only(
-        left: 10,
-        bottom: 5
-      ),
-      width: ResponsiveWidget.ResponsiveWidget.isSmallScreen(context) ?
-          MediaQuery.of(context).size.width / 2 :
-          MediaQuery.of(context).size.width / 3,
-      height: 50,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(
-          Radius.circular(30)
-        ),
-        color: Colors.white,
-        // boxShadow: [
-        //   BoxShadow(
-        //     color: Colors.black54,
-        //     blurRadius: 20
-        //   )
-        // ]
-      ),
-      child: TextField(
-        controller: emailController,
-        obscureText: false,
-        decoration: InputDecoration(
-          hintText: 'email',
-          hasFloatingPlaceholder: false,
-        ),
-      ),
-
-    );
-    // input de password do cadastro
-    Widget passowordField = Container(
-
-      margin: EdgeInsets.all(10),
-      padding: EdgeInsets.only(
-        left: 10,
-        bottom: 5
-      ),
-      width: ResponsiveWidget.ResponsiveWidget.isSmallScreen(context) ?
-          MediaQuery.of(context).size.width / 2 :
-          MediaQuery.of(context).size.width / 3,
-      height: 50,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(
-          Radius.circular(30)
-        ),
-        color: Colors.white,
-        // boxShadow: [
-        //   BoxShadow(
-        //     color: Colors.black54,
-        //     blurRadius: 20
-        //   )
-        // ]
-      ),
-      child: TextField(
-        controller: passwordController,
-        obscureText: true,
-        decoration: InputDecoration(
-          hintText: 'password',
-          hasFloatingPlaceholder: false,
-        ),
-      ),
-
-    );
-    // botão de registro
-    Widget btnRegister = Material(
-
-      borderRadius: BorderRadius.circular(32),
-      child: MaterialButton(
-
-        height: 20,
-        // minWidth: MediaQuery.of(context).size.width / 4,
-        minWidth: ResponsiveWidget.ResponsiveWidget.isSmallScreen(context) ?
-          MediaQuery.of(context).size.width / 2 :
-          MediaQuery.of(context).size.width / 3,
-        color: Colors.purple,
-
-        onPressed: (){
-          
-          print(emailController.text);
-          print(passwordController.text);
-          Navigator.pushNamed(context, '/table');
-
-        },
-        child: Text(
-          'Register',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Colors.white
-          )
-        ),
-
-      ),
-
-    );
-
-    Widget login = MaterialButton(
-
-      padding: EdgeInsets.only(
-        top: 10
-      ),
-      onPressed: (){
-
-        print('ok, ta funcionando');
-        setState(() {
-          isLogin = true;
-        });
-      
-      },
-      child: Text(
-        'You have a account? Enter now!'
-      ),
-
-    );
-
-    return Column(
-      children: <Widget>[
-        emailField,
-        passowordField,
-        btnRegister,
-        login
-      ],
-    );
-
-  }
-
 
   @override
   Widget build(BuildContext context) {
@@ -327,7 +106,7 @@ class _LoginState extends State<Login> {
               child: Padding(
                 padding: const EdgeInsets.only(right: 40),
                 child: Text(
-                  'Login',
+                  'Login/Register',
                   style: TextStyle(color: Colors.white),
                 ),
               ))
