@@ -1,44 +1,38 @@
 import 'package:flutter_web/material.dart';
+import 'package:congrats/containers/header.dart' as header_widget;
+import 'package:congrats/components/btn_header.dart' as btn_header;
 
 class HomePage extends StatelessWidget {
-
-  HomePage({Key key, this.title}): super(key: key);
+  HomePage({Key key, this.title}) : super(key: key);
   final String title;
 
   @override
-  Widget build(BuildContext context){
-
+  Widget build(BuildContext context) {
+    // interface
     return Scaffold(
-      
-      appBar: AppBar(
-
-        title: Text(
-          'Apresentation'
-        ),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.skip_next),
-            tooltip: 'next page',
-            onPressed: () => Navigator.pushNamed(context, '/login'),
-          )
-        ],
-
-      ),
-      body: Center(
-
-        child: Row(
-        
-          mainAxisAlignment: MainAxisAlignment.center,
+      backgroundColor: Colors.white,
+      body: Container(
+        child: Column(
           children: <Widget>[
-            Text('Conteudo, planejar este')
+            // HEADER
+            header_widget.Header(
+              icon: Icons.show_chart,
+              title: 'Apresentação',
+              actions: [
+                btn_header.ButtonHeader(
+                  functionbtn: (){
+                    Navigator.pushNamed(context, '/login');
+                  },
+                  iconBtn: Icons.skip_next
+                )
+              ],
+            ),
+            Center(
+              child: Text('Conteudo da Apresentação'),
+            )
           ],
-        
         ),
-
       ),
-
     );
-
   }
-
 }

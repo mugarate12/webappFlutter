@@ -1,7 +1,8 @@
 import 'package:flutter_web/material.dart';
 import 'package:flutter_web/painting.dart';
-import 'components/register_widget.dart' as register_widget;
-import 'components/login_widget.dart' as login_widget;
+import 'package:congrats/containers/register_widget.dart' as register_widget;
+import 'package:congrats/containers/login_widget.dart' as login_widget;
+import 'package:congrats/containers/header.dart' as header_widget;
 
 class Login extends StatefulWidget {
   @override
@@ -74,45 +75,6 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    // HEADER
-    final header = Container(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height / 5,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(30),
-              bottomRight: Radius.circular(30)),
-          gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Color(0xFF6A0080),
-                Color(0xFF712680),
-              ])),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          // icone
-          Align(
-            alignment: Alignment.center,
-            child: Icon(
-              Icons.person,
-              size: MediaQuery.of(context).size.height / 10,
-              color: Colors.white,
-            ),
-          ),
-          Align(
-              alignment: Alignment.bottomRight,
-              child: Padding(
-                padding: const EdgeInsets.only(right: 40),
-                child: Text(
-                  'Login/Register',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ))
-        ],
-      ),
-    );
 
     // interface
     return Scaffold(
@@ -122,7 +84,11 @@ class _LoginState extends State<Login> {
         child: Column(
           children: <Widget>[
             // Header
-            header,
+            header_widget.Header(
+              title: 'Login/Register',
+              icon: Icons.person,
+              actions: [],
+            ),
             _IsLogin()
             // SizedBox(
             //   height: 20,
