@@ -1,6 +1,7 @@
 import 'package:flutter_web/material.dart';
 import 'package:congrats/containers/header.dart' as header_widget;
 import 'package:congrats/components/btn_header.dart' as btn_header;
+import 'package:congrats/containers/home_widget.dart' as home_widget;
 
 class HomePage extends StatelessWidget {
   HomePage({Key key, this.title}) : super(key: key);
@@ -27,23 +28,24 @@ class HomePage extends StatelessWidget {
                 )
               ],
             ),
-            Container(
-              height: MediaQuery.of(context).size.height / 3,
-              width: MediaQuery.of(context).size.width,
-              child: Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Text(
-                      'Congrats'
-                    ),
-                    Text(
-                      'oo'
-                    )
-                  ],
-                ),
-              ),
-            )
+            home_widget.Home()
+            // Container(
+            //   height: MediaQuery.of(context).size.height / 3,
+            //   width: MediaQuery.of(context).size.width,
+            //   child: Center(
+            //     child: Row(
+            //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //       children: <Widget>[
+            //         Text(
+            //           'Congrats'
+            //         ),
+            //         Text(
+            //           'oo'
+            //         )
+            //       ],
+            //     ),
+            //   ),
+            // )
           ],
         ),
       ),
