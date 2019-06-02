@@ -10,66 +10,44 @@ class Table extends StatefulWidget {
 }
 
 class _TableState extends State<Table> {
-
   bool choice = true;
+  bool ping = true;
 
-  Function _Drawer1(){
-
+  Function _Drawer1() {
     setState(() {
       choice = true;
       print(MediaQuery.of(context).size.width / 40);
       Navigator.pop(context);
     });
-
   }
 
-  Function _Drawer2(){
-
+  Function _Drawer2() {
     setState(() {
       choice = false;
       Navigator.pop(context);
     });
-
   }
 
-  Widget _TwoWidgets(){
+  Function _menuFunction() {
+    print('ok');
+  }
 
-    if(choice){
-
+  Widget _TwoWidgets() {
+    if (choice) {
       return Center(
-
-        child: Text(
-          'PAGE 1'
-        ),
-
+        child: Text('PAGE 1'),
       );
-
     } else {
-
       return Center(
-
-        child: Text(
-          'PAGE 2'
-        ),
-
+        child: Text('PAGE 2'),
       );
-
     }
-
-  } 
+  }
 
   @override
   Widget build(BuildContext context) {
-
-    Function _menuFunction(){
-
-      Scaffold.of(context).openDrawer();  
-
-    }
-
     // interface
     return Scaffold(
-
       drawer: Drawer(
         child: ListView(
           children: <Widget>[
@@ -87,31 +65,29 @@ class _TableState extends State<Table> {
           ],
         ),
       ),
-
       body: Container(
-
-        // encapsula todos os componentes da tela
-        child: Column(
-          
-          children: <Widget>[
-            // HEADER
-            header_widget.Header(
-              title: 'Table',
-              icon: Icons.table_chart,
-              actions: [
-                btn_header.ButtonHeader(
-                  functionbtn: _menuFunction,
-                  iconBtn: Icons.menu
-                )
-              ]
-            ),
-            _TwoWidgets()
-          ],
-
-        ),
-
-      ),
-
+          // encapsula todos os componentes da tela
+          child: Builder(
+        builder: (context) {
+          return Column(
+            children: <Widget>[
+              // HEADER
+              header_widget.Header(
+                  title: 'Table',
+                  icon: Icons.table_chart,
+                  actions: [
+                    btn_header.ButtonHeader(
+                        functionbtn: () {
+                          _menuFunction();
+                          Scaffold.of(context).openDrawer();
+                        },
+                        iconBtn: Icons.menu)
+                  ]),
+              _TwoWidgets()
+            ],
+          );
+        },
+      )),
     );
   }
 }
