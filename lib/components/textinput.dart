@@ -17,14 +17,15 @@ class TextInput extends StatelessWidget{
 
     return Container(
 
-      margin: EdgeInsets.all(10),
+      margin: EdgeInsets.only(
+        top: 10,
+        bottom: 10
+      ),
       padding: EdgeInsets.only(
-        left: 10,
+        // left: 10,
         bottom: 5
       ),
-      width: responsive_widget.ResponsiveWidget.isSmallScreen(context) ?
-          MediaQuery.of(context).size.width / 2 :
-          MediaQuery.of(context).size.width / 3,
+      width: MediaQuery.of(context).size.width,
       height: 50,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(

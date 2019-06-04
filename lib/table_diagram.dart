@@ -1,8 +1,12 @@
 import 'package:flutter_web/material.dart';
 import 'package:flutter_web/rendering.dart';
+// imports do Header
 import 'components/drawer_component.dart' as drawer_component;
 import 'package:congrats/containers/header.dart' as header_widget;
 import 'package:congrats/components/btn_header.dart' as btn_header;
+// imports da tela
+import 'package:congrats/containers/new_album_widget.dart' as new_album_widget;
+import 'package:congrats/containers/show_albuns_widget.dart' as show_albuns_widget;
 
 class Table extends StatefulWidget {
   @override
@@ -10,20 +14,19 @@ class Table extends StatefulWidget {
 }
 
 class _TableState extends State<Table> {
-  bool choice = true;
-  bool ping = true;
+  
+  bool isInsertOrDisplay = true;
 
   Function _Drawer1() {
     setState(() {
-      choice = true;
-      print(MediaQuery.of(context).size.width / 40);
+      isInsertOrDisplay = true;
       Navigator.pop(context);
     });
   }
 
   Function _Drawer2() {
     setState(() {
-      choice = false;
+      isInsertOrDisplay = false;
       Navigator.pop(context);
     });
   }
@@ -33,14 +36,10 @@ class _TableState extends State<Table> {
   }
 
   Widget _TwoWidgets() {
-    if (choice) {
-      return Center(
-        child: Text('PAGE 1'),
-      );
+    if (isInsertOrDisplay) {
+      return new_album_widget.NewAlbum();
     } else {
-      return Center(
-        child: Text('PAGE 2'),
-      );
+      return show_albuns_widget.ShowAlbuns();
     }
   }
 
@@ -48,6 +47,7 @@ class _TableState extends State<Table> {
   Widget build(BuildContext context) {
     // interface
     return Scaffold(
+      backgroundColor: Colors.white,
       drawer: Drawer(
         child: ListView(
           children: <Widget>[

@@ -17,10 +17,7 @@ class ButtonLogin extends StatelessWidget{
       child: MaterialButton(
 
         height: 20,
-        // minWidth: MediaQuery.of(context).size.width / 4,
-        minWidth: responsive_widget.ResponsiveWidget.isSmallScreen(context) ?
-          MediaQuery.of(context).size.width / 2 :
-          MediaQuery.of(context).size.width / 3,
+        minWidth: MediaQuery.of(context).size.width,
         color: Colors.purple,
 
         onPressed: (){
