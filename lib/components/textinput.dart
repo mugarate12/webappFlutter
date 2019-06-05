@@ -28,16 +28,10 @@ class TextInput extends StatelessWidget{
       width: MediaQuery.of(context).size.width,
       height: 50,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(
-          Radius.circular(30)
-        ),
+        // borderRadius: BorderRadius.all(
+        //   Radius.circular(30)
+        // ),
         color: Colors.white,
-        // boxShadow: [
-        //   BoxShadow(
-        //     color: Colors.black54,
-        //     blurRadius: 20
-        //   )
-        // ]
       ),
       child: TextField(
         controller: controllerInput,

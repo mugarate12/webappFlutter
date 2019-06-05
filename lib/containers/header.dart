@@ -44,14 +44,6 @@ class Header extends StatelessWidget{
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           // icone
-          Align(
-            alignment: Alignment.center,
-            child: Icon(
-              icon,
-              size: MediaQuery.of(context).size.height / 10,
-              color: Colors.white,
-            ),
-          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -67,7 +59,15 @@ class Header extends StatelessWidget{
                 ),
               ))
             ],
-          )
+          ),
+          Align(
+            alignment: Alignment.center,
+            child: Icon(
+              icon,
+              size: MediaQuery.of(context).size.height / 13,
+              color: Colors.white,
+            ),
+          ),
         ],
       ),
     );

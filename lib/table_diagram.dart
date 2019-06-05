@@ -16,10 +16,12 @@ class Table extends StatefulWidget {
 class _TableState extends State<Table> {
   
   bool isInsertOrDisplay = true;
+  String display_actual_form = 'novo albúm';
 
   Function _Drawer1() {
     setState(() {
       isInsertOrDisplay = true;
+      display_actual_form = 'novo albúm';
       Navigator.pop(context);
     });
   }
@@ -27,13 +29,12 @@ class _TableState extends State<Table> {
   Function _Drawer2() {
     setState(() {
       isInsertOrDisplay = false;
+      display_actual_form = 'meus albúns';
       Navigator.pop(context);
     });
   }
 
-  Function _menuFunction() {
-    print('ok');
-  }
+  Function _menuFunction() {}
 
   Widget _TwoWidgets() {
     if (isInsertOrDisplay) {
@@ -53,14 +54,14 @@ class _TableState extends State<Table> {
           children: <Widget>[
             // itens do Drawer
             drawer_component.DrawerComponent(
-              icon: Icons.aspect_ratio,
+              icon: Icons.create_new_folder,
               btnFunction: _Drawer1,
-              nameComponent: 'Page A',
+              nameComponent: 'Novo albúm',
             ),
             drawer_component.DrawerComponent(
-              icon: Icons.access_alarm,
+              icon: Icons.slideshow,
               btnFunction: _Drawer2,
-              nameComponent: 'Page B',
+              nameComponent: 'Meus albuns',
             )
           ],
         ),
@@ -73,7 +74,7 @@ class _TableState extends State<Table> {
             children: <Widget>[
               // HEADER
               header_widget.Header(
-                  title: 'Table',
+                  title: 'Table/$display_actual_form',
                   icon: Icons.table_chart,
                   actions: [
                     btn_header.ButtonHeader(

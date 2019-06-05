@@ -29,23 +29,6 @@ class HomePage extends StatelessWidget {
               ],
             ),
             home_widget.Home()
-            // Container(
-            //   height: MediaQuery.of(context).size.height / 3,
-            //   width: MediaQuery.of(context).size.width,
-            //   child: Center(
-            //     child: Row(
-            //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //       children: <Widget>[
-            //         Text(
-            //           'Congrats'
-            //         ),
-            //         Text(
-            //           'oo'
-            //         )
-            //       ],
-            //     ),
-            //   ),
-            // )
           ],
         ),
       ),
