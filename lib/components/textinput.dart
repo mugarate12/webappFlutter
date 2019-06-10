@@ -7,10 +7,12 @@ class TextInput extends StatelessWidget{
   TextInput({
     Key key, 
     this.controllerInput,
-    this.hintText
+    this.hintText,
+    this.labelText
   }): super(key: key);
   final TextEditingController controllerInput;
   final String hintText;
+  final String labelText;
 
   @override
   Widget build(BuildContext context){
@@ -37,6 +39,9 @@ class TextInput extends StatelessWidget{
         controller: controllerInput,
         obscureText: false,
         decoration: InputDecoration(
+          // nome do campo
+          labelText: labelText,
+          // quando clicar, nome dentro do campo
           hintText: hintText,
           hasFloatingPlaceholder: false,
         ),

@@ -29,18 +29,26 @@ class PartyTheme extends StatelessWidget {
     List<Widget> themes = [];
 
     for (var i = 0; i < imgArray.length; i++) {
-      themes.add(MaterialButton(
-        // key: Key(i.toString()),
-        elevation: 0.6,
-        onPressed: () {
-          img = i;
-          print(img);
-        },
-        child: Image.network(
-          imgArray[i],
-          height: 30,
-          width: 100,
-        ),
+      themes.add(ExpansionTile(
+        title: Text("Tema${i}"),
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.only(bottom: 5),
+            child: MaterialButton(
+              // key: Key(i.toString()),
+              elevation: 0.6,
+              onPressed: () {
+                img = i;
+                print(img);
+              },
+              child: Image.network(
+                imgArray[i],
+                height: 50,
+                width: 150,
+              ),
+            ),
+          )
+        ],
       ));
     }
 
@@ -50,11 +58,10 @@ class PartyTheme extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width,
-      child: Wrap(
-        direction: Axis.horizontal,
-        children: _gerar(),
-      )
-    );
+        width: MediaQuery.of(context).size.width,
+        child: Wrap(
+          direction: Axis.horizontal,
+          children: _gerar(),
+        ));
   }
 }

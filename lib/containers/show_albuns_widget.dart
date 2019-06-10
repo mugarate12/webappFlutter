@@ -1,6 +1,7 @@
 import 'package:flutter_web/material.dart';
 
 import 'package:congrats/components/btn_album.dart' as btn_album;
+import 'package:congrats/components/img_album_button.dart' as img_album;
 
 class ShowAlbuns extends StatelessWidget {
   Function _functionDiagramador(int id) {
@@ -49,53 +50,14 @@ class ShowAlbuns extends StatelessWidget {
       List<Widget> albums = [];
 
       for (var i = 0; i < items.length; i++) {
-        albums.add(Padding(
-          padding: EdgeInsets.only(bottom: 10),
-          child: Container(
-            height: 60,
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                image: DecorationImage(
-                    image: NetworkImage(
-                      items[i][2],
-                    ),
-                    fit: BoxFit.cover)),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                // nome da festa, e afins
-                Padding(
-                  padding: EdgeInsets.only(left: 5, top: 2),
-                  child: Column(
-                    children: <Widget>[Text(items[i][1])],
-                  ),
-                ),
-                // actions
-                Padding(
-                  padding: EdgeInsets.only(right: 5),
-                  child: Row(
-                    children: <Widget>[
-                      // botão diagramador
-                      btn_album.BtnAlbum(
-                        color: Colors.purple,
-                        icon: Icons.tab,
-                        function_btn: _functionDiagramador,
-                        id_value: items[i][0],
-                      ),
-                      btn_album.BtnAlbum(
-                        color: Colors.purple,
-                        icon: Icons.dock,
-                        function_btn: _functionPdf,
-                        id_value: items[i][0],
-                      )
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
-        ));
+        albums.add(
+          img_album.Album(
+            functionDiagramador: _functionDiagramador,
+            functionPdf: _functionPdf,
+            i: i,
+            items: items,
+          )
+        );
       }
 
       return albums;

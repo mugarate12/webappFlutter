@@ -29,9 +29,9 @@ class Login extends StatelessWidget {
       child: Column(
         children: <Widget>[
           text_input.TextInput(
-              controllerInput: emailController, hintText: 'email'),
+              controllerInput: emailController, hintText: 'exemplo@gmail.com', labelText: 'email'),
           text_input.TextInput(
-              controllerInput: passwordController, hintText: 'password'),
+              controllerInput: passwordController, hintText: 'suaSenha123', labelText: 'password'),
           login_btn.ButtonLogin(functionBtn: btnFunction, btnName: 'Login'),
           login_or_register.LoginOrRegister(
               loginOrNot: switchFunction,

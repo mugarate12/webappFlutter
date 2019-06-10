@@ -11,11 +11,16 @@ class Register extends StatelessWidget {
       {Key key,
       this.emailController,
       this.passwordController,
+      this.adressController,
+      this.contactController,
       this.btnFunction,
-      this.switchFunction})
+      this.switchFunction
+      })
       : super(key: key);
   final TextEditingController emailController;
   final TextEditingController passwordController;
+  final TextEditingController adressController;
+  final TextEditingController contactController;
   final Function btnFunction;
   final Function switchFunction;
 
@@ -28,9 +33,19 @@ class Register extends StatelessWidget {
       child: Column(
         children: <Widget>[
           text_input.TextInput(
-              controllerInput: emailController, hintText: 'email'),
+              controllerInput: emailController, hintText: 'exemplo@gmail.com', labelText: 'email'),
           text_input.TextInput(
-              controllerInput: passwordController, hintText: 'password'),
+              controllerInput: passwordController, hintText: 'suaSenha123', labelText: 'password'),
+          text_input.TextInput(
+              controllerInput: adressController,
+              hintText: 'Rua Fernandes Lima - São Freitas',
+              labelText: 'Endereço',
+          ),
+          text_input.TextInput(
+            controllerInput: contactController,
+            hintText: '(82)99226-6454',
+            labelText: 'Contato',
+          ),
           login_btn.ButtonLogin(functionBtn: btnFunction, btnName: 'Register'),
           login_or_register.LoginOrRegister(
               loginOrNot: switchFunction,

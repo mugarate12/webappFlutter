@@ -35,6 +35,8 @@ class _LoginState extends State<Login> {
   // estados do registro
   TextEditingController email_register_controller = new TextEditingController();
   TextEditingController password_register_controller = new TextEditingController();
+  TextEditingController adress_register_controller = new TextEditingController();
+  TextEditingController contact_register_controller = new TextEditingController();
   Function _RegisterBtn(){
 
     Navigator.pushNamed(context, '/table');
@@ -65,6 +67,8 @@ class _LoginState extends State<Login> {
       return register_widget.Register(
         emailController: email_register_controller,
         passwordController: password_register_controller,
+        adressController: adress_register_controller,
+        contactController: contact_register_controller,
         btnFunction: _RegisterBtn,
         switchFunction: _RegisterSwitch,
       );
