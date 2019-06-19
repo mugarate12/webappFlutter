@@ -15,7 +15,7 @@ class Table extends StatefulWidget {
 
 class _TableState extends State<Table> {
   
-  bool isInsertOrDisplay = true;
+  bool isInsertOrDisplay = false;
   String display_actual_form = 'novo albúm';
 
   Function _Drawer1() {

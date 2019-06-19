@@ -28,3 +28,15 @@ class Themes {
   }
 
 }
+
+class Themes2 {
+
+  List<Themes> themesArray;
+
+  Themes2({
+    this.themesArray
+  });
+
+  
+
+}

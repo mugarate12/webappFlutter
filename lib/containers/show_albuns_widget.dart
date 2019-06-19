@@ -1,7 +1,9 @@
 import 'package:flutter_web/material.dart';
+import 'package:flutter_web/rendering.dart';
 
 import 'package:congrats/components/btn_album.dart' as btn_album;
 import 'package:congrats/components/img_album_button.dart' as img_album;
+import 'package:congrats/components/card_album.dart' as card;
 
 class ShowAlbuns extends StatelessWidget {
   Function _functionDiagramador(int id) {
@@ -50,28 +52,40 @@ class ShowAlbuns extends StatelessWidget {
       List<Widget> albums = [];
 
       for (var i = 0; i < items.length; i++) {
-        albums.add(
-          img_album.Album(
-            functionDiagramador: _functionDiagramador,
-            functionPdf: _functionPdf,
-            i: i,
-            items: items,
-          )
-        );
+        albums.add(img_album.Album(
+          functionDiagramador: _functionDiagramador,
+          functionPdf: _functionPdf,
+          i: i,
+          items: items,
+        ));
       }
 
       return albums;
     }
 
-    return Padding(
-      padding: EdgeInsets.only(top: 20),
-      child: Container(
-        width: MediaQuery.of(context).size.width / 2,
-        child: Wrap(
-          direction: Axis.horizontal,
-          children: _items(),
-        ),
-      ),
-    );
+    // return Padding(
+    //   padding: EdgeInsets.only(top: 20),
+    //   child: Container(
+    //     width: MediaQuery.of(context).size.width / 1.5,
+    //     child: Wrap(
+    //       direction: Axis.horizontal,
+    //       children: <Widget>[
+    //         card.Card_Album(),
+    //         // card.Card_Album()
+    //       ],
+    //     ),
+    //   ),
+    // );
+
+    return Container(
+        width: MediaQuery.of(context).size.width / 1.5,
+        height: MediaQuery.of(context).size.height -
+            (MediaQuery.of(context).size.height / 4),
+        child: ListView(
+          children: <Widget>[
+            card.Card_Album(),
+            // card.Card_Album()
+          ],
+        ));
   }
 }
