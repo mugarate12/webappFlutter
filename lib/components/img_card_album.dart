@@ -4,9 +4,9 @@ class ImgAlbum extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,
+      height: 200,
       margin: EdgeInsets.only(top: 2, right: 2, left: 2),
-      width: MediaQuery.of(context).size.width,
+      width: MediaQuery.of(context).size.width / 4,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
         image: DecorationImage(

@@ -1,42 +1,15 @@
 import 'package:flutter_web/material.dart';
 
-class Themes {
+class Example {
+  final int id;
+  final String name_of_fest;
 
-  int id;
-  String theme;
-  String category;
-  String url;
+  Example(this.id, this.name_of_fest);
 
-  Themes({
-    this.id,
-    this.theme,
-    this.category,
-    this.url
-  });
-
-  factory Themes.fromJson(Map<String, dynamic> json) {
-
-    return new Themes(
-
-      id: json['id'],
-      theme: json['theme'],
-      category: json['category'],
-      url: json['url']
-
+  factory Example.fromJson(Map<String, dynamic> json) {
+    return Example(
+      json['id'],
+      json['name_of_fest'],
     );
-
   }
-
-}
-
-class Themes2 {
-
-  List<Themes> themesArray;
-
-  Themes2({
-    this.themesArray
-  });
-
-  
-
 }

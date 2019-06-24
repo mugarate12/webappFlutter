@@ -7,13 +7,11 @@ class Btn extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(
-          left: 5,
-          right: responsive_widget.ResponsiveWidget.isSmallScreen(context)
-              ? 5
-              : 0),
-      width: responsive_widget.ResponsiveWidget.isSmallScreen(context)
-          ? MediaQuery.of(context).size.width
-          : MediaQuery.of(context).size.width / 3.1,
+        left: 5,
+        // right:
+        //     responsive_widget.ResponsiveWidget.isSmallScreen(context) ? 5 : 0,
+      ),
+      width: MediaQuery.of(context).size.width / 15,
       child: RaisedButton(
         onPressed: () {},
       ),

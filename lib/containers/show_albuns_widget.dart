@@ -1,9 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter_web/material.dart';
 import 'package:flutter_web/rendering.dart';
 
-import 'package:congrats/components/btn_album.dart' as btn_album;
+// import 'package:congrats/components/btn_album.dart' as btn_album;
 import 'package:congrats/components/img_album_button.dart' as img_album;
 import 'package:congrats/components/card_album.dart' as card;
+
+import 'package:congrats/components/json_class_theme.dart' as json_ex;
 
 class ShowAlbuns extends StatelessWidget {
   Function _functionDiagramador(int id) {
@@ -17,6 +21,17 @@ class ShowAlbuns extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<List> _get_from_api() {
+
+
+      var jsonExample = ' { "name_of_fest": "o nome agora é @", "id": 1 }';
+
+      final jsonResponse = json.decode(jsonExample);
+
+      json_ex.Example a = new json_ex.Example.fromJson(jsonResponse);
+
+      print(a.name_of_fest);
+
+
       // simulando o que aqui, vai ser um json
       return [
         [
@@ -47,45 +62,48 @@ class ShowAlbuns extends StatelessWidget {
       ];
     }
 
-    List<Widget> _items() {
+    Widget _items() {
       List<List> items = _get_from_api();
-      List<Widget> albums = [];
+     
+      return card.Card_Album();
 
-      for (var i = 0; i < items.length; i++) {
-        albums.add(img_album.Album(
-          functionDiagramador: _functionDiagramador,
-          functionPdf: _functionPdf,
-          i: i,
-          items: items,
-        ));
-      }
-
-      return albums;
     }
-
-    // return Padding(
-    //   padding: EdgeInsets.only(top: 20),
-    //   child: Container(
-    //     width: MediaQuery.of(context).size.width / 1.5,
-    //     child: Wrap(
-    //       direction: Axis.horizontal,
-    //       children: <Widget>[
-    //         card.Card_Album(),
-    //         // card.Card_Album()
-    //       ],
-    //     ),
-    //   ),
-    // );
+    
 
     return Container(
-        width: MediaQuery.of(context).size.width / 1.5,
-        height: MediaQuery.of(context).size.height -
-            (MediaQuery.of(context).size.height / 4),
-        child: ListView(
-          children: <Widget>[
-            card.Card_Album(),
-            // card.Card_Album()
-          ],
-        ));
+      width: MediaQuery.of(context).size.width / 4,
+      height: MediaQuery.of(context).size.height -
+          (MediaQuery.of(context).size.height / 4),
+      child: ListView(
+        children: <Widget>[
+          card.Card_Album(),
+          card.Card_Album(),
+          _items(),
+        ],
+      ),
+    );
+
+    // return Wrap(
+
+    //   direction: Axis.horizontal,
+    //   children: <Widget>[
+    //     card.Card_Album()
+    //   ],
+
+    // );
+
+    // return Container(
+    //   width: MediaQuery.of(context).size.width / 4,
+    //   height: MediaQuery.of(context).size.height -
+    //       (MediaQuery.of(context).size.height / 4),
+    //   child: GridView.count(
+    //     crossAxisCount: 2,
+    //     // crossAxisSpacing: 2,
+    //     scrollDirection: Axis.vertical,
+    //     children: <Widget>[
+    //       card.Card_Album()
+    //     ],
+    //   ),
+    // );
   }
 }
