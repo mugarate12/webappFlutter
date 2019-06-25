@@ -4,7 +4,6 @@ import 'package:flutter_web/material.dart';
 
 import 'package:congrats/components/card_album.dart' as card;
 
-import 'package:congrats/components/json_class_theme.dart' as json_ex;
 import 'package:congrats/components/json_class_album.dart' as json_album;
 
 class ShowAlbuns extends StatelessWidget {
