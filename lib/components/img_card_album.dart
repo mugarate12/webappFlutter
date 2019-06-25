@@ -1,6 +1,17 @@
 import 'package:flutter_web/material.dart';
 
 class ImgAlbum extends StatelessWidget {
+
+  ImgAlbum({
+    Key key,
+    this.nome_da_festa,
+    this.theme_img
+  })
+  :super(key: key);
+
+  final String nome_da_festa;
+  final String theme_img;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -11,7 +22,8 @@ class ImgAlbum extends StatelessWidget {
         borderRadius: BorderRadius.circular(5),
         image: DecorationImage(
           image: NetworkImage(
-            'https://jovemnerd.com.br/wp-content/uploads/2018/12/one-punch-man-2-temporada-teaser-760x428.png',
+            // 'https://jovemnerd.com.br/wp-content/uploads/2018/12/one-punch-man-2-temporada-teaser-760x428.png',
+            theme_img,
           ),
           fit: BoxFit.cover,
         ),
@@ -23,7 +35,8 @@ class ImgAlbum extends StatelessWidget {
           bottom: 5,
         ),
         child: Text(
-          'nome da festa',
+          // 'nome da festa',
+          nome_da_festa,
           style: TextStyle(
             color: Colors.white,
             fontSize: 21,

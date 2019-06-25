@@ -1,5 +1,3 @@
-import 'package:flutter_web/material.dart';
-
 class Example {
   final int id;
   final String name_of_fest;

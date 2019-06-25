@@ -1,13 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter_web/material.dart';
-import 'package:flutter_web/rendering.dart';
 
-// import 'package:congrats/components/btn_album.dart' as btn_album;
-import 'package:congrats/components/img_album_button.dart' as img_album;
 import 'package:congrats/components/card_album.dart' as card;
 
 import 'package:congrats/components/json_class_theme.dart' as json_ex;
+import 'package:congrats/components/json_class_album.dart' as json_album;
 
 class ShowAlbuns extends StatelessWidget {
   Function _functionDiagramador(int id) {
@@ -20,67 +18,50 @@ class ShowAlbuns extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<List> _get_from_api() {
-
-
-      var jsonExample = ' { "name_of_fest": "o nome agora é @", "id": 1 }';
-
-      final jsonResponse = json.decode(jsonExample);
-
-      json_ex.Example a = new json_ex.Example.fromJson(jsonResponse);
-
-      print(a.name_of_fest);
-
-
-      // simulando o que aqui, vai ser um json
-      return [
-        [
-          1,
-          'Festa de Fulano',
-          'https://vignette.wikia.nocookie.net/mob-psycho-100/images/8/8c/Mob_anime.png/revision/latest?cb=20160712054631'
-        ],
-        [
-          2,
-          'festa de cicrano',
-          'https://jovemnerd.com.br/wp-content/uploads/2018/12/one-punch-man-2-temporada-teaser-760x428.png'
-        ],
-        [
-          3,
-          'festa de cicrano',
-          'http://leituraverso.com.br/wp-content/uploads/2019/01/mob-psycho-100-ritsu.jpg'
-        ],
-        [
-          4,
-          'festa de cicrano',
-          'https://vignette.wikia.nocookie.net/kurokonobasuke/images/7/79/LG_Kuroko.png/revision/latest?cb=20170730002650',
-        ],
-        [
-          5,
-          'festa de cicrano',
-          'https://jovemnerd.com.br/wp-content/uploads/2018/12/one-punch-man-2-temporada-teaser-760x428.png'
-        ],
+    List<Widget> _albuns() {
+      var jsonResponse = [
+        '{ "nome_da_festa": "Juninho", "homenageados": "Junior", "data_e_hora": "07-10-2019", "endereco": "Rua Pedro Oliveira", "local_da_festa": "Characa Junior", "theme_img": "https://jovemnerd.com.br/wp-content/uploads/2018/12/one-punch-man-2-temporada-teaser-760x428.png" }',
+        '{ "nome_da_festa": "Ronaldinho", "homenageados": "Ronaldo", "data_e_hora": "07-08-2019", "endereco": "Avenida kkk", "local_da_festa": "Piscina", "theme_img": "https://vignette.wikia.nocookie.net/mob-psycho-100/images/8/8c/Mob_anime.png/revision/latest?cb=20160712054631" }'
       ];
-    }
 
-    Widget _items() {
-      List<List> items = _get_from_api();
-     
-      return card.Card_Album();
+      var jsonResponseDecoded = [];
+      for (var i = 0; i < jsonResponse.length; i++) {
+        jsonResponseDecoded.add(
+            new json_album.PartyAlbum.fromJson(json.decode(jsonResponse[i])));
+      }
 
+      List<Widget> albums = [];
+      // adicionando exemplo, desconsiderar depois
+      albums.add(card.Card_Album(
+        nome_da_festa: 'nome da festa',
+        homenageados: "homenageados",
+        data_e_hora: 'data e hora',
+        endereco: 'endereço',
+        local_da_festa: "local da festa",
+        theme_img:
+            'https://vignette.wikia.nocookie.net/mob-psycho-100/images/8/8c/Mob_anime.png/revision/latest?cb=20160712054631',
+      ));
+
+      for (var m = 0; m < jsonResponseDecoded.length; m++) {
+        albums.add(card.Card_Album(
+                nome_da_festa: jsonResponseDecoded[m].nome_da_festa,
+                homenageados: jsonResponseDecoded[m].homenageados,
+                data_e_hora: jsonResponseDecoded[m].data_e_hora,
+                endereco: jsonResponseDecoded[m].endereco,
+                local_da_festa: jsonResponseDecoded[m].local_da_festa,
+                theme_img: jsonResponseDecoded[m].theme_img)
+            // card.Card_Album()
+            );
+      }
+
+      return albums;
     }
-    
 
     return Container(
       width: MediaQuery.of(context).size.width / 4,
       height: MediaQuery.of(context).size.height -
           (MediaQuery.of(context).size.height / 4),
-      child: ListView(
-        children: <Widget>[
-          card.Card_Album(),
-          card.Card_Album(),
-          _items(),
-        ],
-      ),
+      child: ListView(children: _albuns()),
     );
 
     // return Wrap(
